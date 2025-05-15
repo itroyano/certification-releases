@@ -1,12 +1,12 @@
 
 # Operator Certification CI Pipeline<br/>Instructions
 ## Get Help:
-> Technology Partner Success Desk is a service  for all our technology partners where they can ask technical and non-technical questions pertaining to Red Hat offerings, programs, engagement processes, etc. If you run into any issues throughout these instructions please reach out to the Technology Partner Success Desk. 
+> The Partner Acceleration Desk is a service available to all our technology partners where they can ask technical and non-technical questions pertaining to Red Hat offerings, programs, engagement processes, etc. If you run into any issues when following these instructions, please reach out to the Partner Assistance Desk. 
 >
-> You can access the Success Desk by going to: [Red Hat Help Request](https://connect.redhat.com/support/technology-partner/#/). 
+> You can access the PAD by going to: [Red Hat Help Request](https://connect.redhat.com/support/technology-partner/#/). 
 
 # NOTE: The documentation below is also available on access.redhat.com.
-## Additional documentation is available at [Chapter 21: Running the certification test suite locally](https://access.redhat.com/documentation/en-us/red_hat_software_certification/8.56/html/red_hat_software_certification_workflow_guide/assembly-running-the-certification-suite-locally_openshift-sw-cert-workflow-complete-pre-certification-checklist) in the Red Hat Software Certification Workflow Guide.
+## Additional documentation is available at [Running the certification test suite locally](https://docs.redhat.com/en/documentation/red_hat_software_certification/2025/html-single/red_hat_software_certification_workflow_guide/index#assembly-running-the-certification-suite-locally_openshift-sw-cert-workflow-working-with-operators) in the Red Hat Software Certification Workflow Guide.
 
 
 
@@ -73,19 +73,10 @@ The certification pipeline expects you to have the source files for your Operato
       └── ci.yaml
 ```
 
-*config.yaml*: This file should include the organization you are targeting for distribution of your Operator. The value should be either `certified-operators` or `redhat-marketplace`. See the example below:
+*config.yaml*: This file should include the organization you are targeting for distribution of your Operator. The value should be `certified-operators`. See the example below:
 ``` bash
 organization: certified-operators
 ```
-
-Please Note: If you are targeting your Operator for Red Hat Marketplace distribution, you must include the following annotations in your clusterserviceversion.yaml:
-``` bash
-marketplace.openshift.io/remote-workflow: https://marketplace.redhat.com/en-us/operators/
-{package_name}/pricing?utm_source=openshift_console
- 
-marketplace.openshift.io/support-workflow:https://marketplace.redhat.com/en-us/operators/\{package_name}/support?utm_source=openshift_console
-```
-If you are updating an existing Red Hat Marketplace Operator bundle in the [RHM Operator repository](https://github.com/redhat-openshift-ecosystem/redhat-marketplace-operators), your package name must be consistent with the existing folder name you see for your Operator. For Marketplace bundles, you will need to manually add `-rhmp` to your package name. Previously, this was done automatically and therefore will not impact customer upgrades when manually changed. 
 
 *ci.yaml*: This file should include your Red Hat Technology Partner project id and the organization target for this operator. 
 
@@ -159,14 +150,8 @@ oc import-image certified-operator-index:${OPENSHIFT_VERSION} \
 ```bash
 OPENSHIFT_VERSION=<major and minor version of your OpenShift cluster> (ie: "v4.18")
 
-oc import-image redhat-marketplace-index:${OPENSHIFT_VERSION} \
-  --from=registry.redhat.io/redhat/redhat-marketplace-index:${OPENSHIFT_VERSION} \
-  --reference-policy local \
-  --scheduled \
-  --confirm
-```
 
-### <a id="anyuid-scc-ppc64e"></a>Optional Step - If using an OpenShift on IBM Power(ppc64le) cluster
+### <a id="anyuid-scc-ppc64e"></a>Optional Step - If using an OpenShift on IBM Power(ppc64le) cluster or a Red Hat OpenShift Local cluster
 Grant the anyuid security context constraints (SCC) to the default pipeline service account. This will avoid any permission issues on ppc64le architecture.
 ```bash
 oc adm policy add-scc-to-user anyuid -z pipeline
