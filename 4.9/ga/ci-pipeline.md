@@ -1,9 +1,9 @@
 
 # Operator Certification CI Pipeline<br/>Instructions
 ## Get Help:
-> The Technology Partner Success Desk is a service available to all our technology partners where they can ask technical and non-technical questions pertaining to Red Hat offerings, programs, engagement processes, etc. If you run into any issues when following these instructions, please reach out to the Technology Partner Success Desk. 
+> The Partner Acceleration Desk is a service available to all our technology partners where they can ask technical and non-technical questions pertaining to Red Hat offerings, programs, engagement processes, etc. If you run into any issues when following these instructions, please reach out to the Partner Assistance Desk. 
 >
-> You can access the Success Desk by going to: [Red Hat Help Request](https://connect.redhat.com/support/technology-partner/#/). 
+> You can access the PAD by going to: [Red Hat Help Request](https://connect.redhat.com/support/technology-partner/#/). 
 
 # NOTE: The documentation below is also available on access.redhat.com.
 ## Additional documentation is available at [Running the certification test suite locally](https://docs.redhat.com/en/documentation/red_hat_software_certification/2025/html-single/red_hat_software_certification_workflow_guide/index#assembly-running-the-certification-suite-locally_openshift-sw-cert-workflow-working-with-operators) in the Red Hat Software Certification Workflow Guide.
